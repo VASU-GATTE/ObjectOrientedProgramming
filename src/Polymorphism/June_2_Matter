@@ -1,0 +1,30 @@
+Polymorphism
+______________________________________________________________________________________
+
+Poly means many  Morphisam means forms
+
+one thing can behave in many ways.
+
+Compiletime-polymorphism / Overloading/ early Binding
+
+                   runtime polymorphism/ Overloading / late binding
+
+--> A method having same name but different paramters is known as overloading.
+
+Automatic Promotion in Overloading :
+------------------------------------------------
+We can pass the int value to the double paramters in the method it will automatically convert the int value to double
+value if method of that doesnt exists throws error.
+
+--> If overloading if the compiler is unable to find the method with exact match we wont get any compile time error
+    immediatly.
+--> 1st compier promotes the arguments to the next level and checks whether the mathced method is avaliable or not
+    if it is avaliable then that method will be considered. if it is not avaliable then compiler promotes the argument once again
+    to the next level .This process will be continued until all possible promotions still is the method matched method is not
+    avalible then we will get compiletime error. This process ia called "Automatic Promotion Overloading".
+
+
+Constructor Overloading :
+------------------------------------------------------------
+A class can contain more than one constructor and all this constructor having the same name but different paramaters(or arguments)
+and hence these constructors considered as "Overloaded constructors".

@@ -1,0 +1,1460 @@
+30-5-25                                                    Default Constructors
+_______________________________________________________________________________
+for every class in java including abstract class also constructors concept is applicable.
+
+if we are not writing at least one constructor then complier will generate default constructor.
+
+if we are writing at least one constructor then compiler won't generate any default comnstrucot.
+Hence every class contins either compiler generated constructor or progrmmer written construcotr
+but not simultaneously.
+
+Parameterized constructors:
+___________________________________________________________________________________________
+The constructors with parameters is known as paramterized constructor.
+
+Copy Constructor:
+_________________________________________________________________________________________
+
+A copy constructor  is a special type of construcor in java. That initializes a new Object
+as a copy of existing object of the same class.
+
+It accepts an Object of the same class as paramter and initilaizes the new objects state with the values from the
+existing Object.
+
+===================================================================================================================
+                                                02-06-25
+===================================================================================================================
+Polymorphism
+______________________________________________________________________________________
+
+Poly means many  Morphisam means forms
+
+one thing can behave in many ways.
+
+Compiletime-polymorphism / Overloading/ early Binding
+
+                   runtime polymorphism/ Overloading / late binding
+
+--> A method having same name but different paramters is known as overloading.
+
+Automatic Promotion in Overloading :
+------------------------------------------------
+We can pass the int value to the double paramters in the method it will automatically convert the int value to double
+value if method of that doesnt exists throws error.
+
+--> If overloading if the compiler is unable to find the method with exact match we wont get any compile time error
+    immediatly.
+--> 1st compier promotes the arguments to the next level and checks whether the mathced method is avaliable or not
+    if it is avaliable then that method will be considered. if it is not avaliable then compiler promotes the argument once again
+    to the next level .This process will be continued until all possible promotions still is the method matched method is not
+    avalible then we will get compiletime error. This process ia called "Automatic Promotion Overloading".
+
+
+Constructor Overloading :
+------------------------------------------------------------
+A class can contain more than one constructor and all this constructor having the same name but different paramaters(or arguments)
+and hence these constructors considered as "Overloaded constructors".
+
+
+===================================================================================================================
+                                                03-06-25
+===================================================================================================================
+
+Encapsulation(public,protected,private classes)
+------------------------------------------------------------------
+--> Encapsulation is used for majorly security
+--> Encapsulation is the mechanism that binds code and the data it manipulates into single unit(Class),
+    while protecting both from outside interface and misuse.
+
+--> This ensures that
+    1. Code and data are protected from unautorized access.
+    2. Complexity is hidden behind a clear,simple interface.
+
+Getters and Setters
+------------------------------------------------------------------------------------------
+In java,getters and setters methods are used to accesss and modify the private fields (Attributes/ variables)
+respeectively .They provide a way to encapsulate the access to class fileds allowing for better control over
+how the fields are accessed modified. Getters are used to retrieve the value of a private field. and setters
+are used to used to update the value of a private field.
+
+Getters
+-------------------------------
+1. It is always public.
+2. It is always expect the return type based on field.
+3. It is always no arguments.
+4. MEthod naming should be prefixed with get and followed by attribute.
+Example:
+    public string getName(){
+    return name;
+    }
+
+Setters
+----------------------------------------
+1. It is always public.
+2. It doesnt haave a return type (we need to take void ).
+3. It is always take takes parameters.
+4. Method should be prefixed with set followed by attribute Name.
+Example:
+    public void setName(String name){
+    this.name=name;
+    }
+
+===================================================================================================================
+                                                04-06-25
+===================================================================================================================
+
+Inheritance
+-------------------------------------------------------------------------------
+1. Inheritance is a fundamental concept in object oriented Programming(OOP) where a class
+    (subclass or child class or derived class or new class) can inherit attributes and methods
+    from another class(SuperClass,parentClass,base class,old class). This allows classes to be organised
+    in hierarical Structure. Where common behavoirs and characteristics are defined in a higher level
+    class and specicilized behaviours are defined in lower level classes.
+--> By using "extends" keyword we can achieve inheritance.
+
+
+*>Parent p2=new Child();
+    this can be used for creating object for the child class but " It will only retrive the properties of Parent class"
+
+*>Child c2= new Parent();
+    This is not possible for crating object because we cant call parent from child.
+
+
+1. Whatever the parent class properties by default avaliable to the child class. But whatever the child class properties
+    are by default not avaliable to parent. Hence on the chid reference to hold child object we can call both parent class
+    methods and child class methods. But by parent reference hold parent object we can ccall only the methods avaliable in parent class
+
+2. Parent class reference can be usedd to hold child objects but using that references we can call only method avaliable in
+    parent class and child specific methods we cant call. It is known as subTyping.
+
+3. Child class reference cannot be used to hold Parent class.
+
+super
+-------------------------
+By using super(); we can call parent class constructer.
+
+
+Tips:
+--------------
+--> If the parent class contains arguments then we need to assign the values to the child class through the super keyword.
+    Example :
+    public Calculation(int num1, int num2) {
+            this.num1 = num1;                      //this is the Parent class
+            this.num2 = num2;
+    }
+    public My_Calculation(int num1, int num2) {     //This is the Child class
+            super(num1, num2);
+    }
+
+=======================================================================================================================
+                                                    06-06-25
+=======================================================================================================================
+
+Polymorphism
+---------------------------------
+Compiletime/ Overloading/ early binding                                 runtime/ Overriding/ Late binding
+
+
+Overriding
+------------------------------
+Whatever the parent class properties by default avaliable to child class through inheritance, if the child class
+doesnot satisfied with parent class implemented methods. Then child class has to redefined that methods is known
+"OverRiding"
+
+Dynamic Method Dispatch
+------------------------------
+--> It is a process when a call to an overridden method is resoled at runtime not a compiletime.
+--> When u have a super class variable pointing to a subclass object, calling an overridden method of this
+    reference executes subclass version of a method.
+--> This Decision is made dynamically by the jvm based on actual object's type. not a reference type.
+
+toString()
+--------------------------------
+--> We can use this method to get String represenatation of an Object.
+--> whenever we are try to print any object reference internally toString() method will be executed.
+--> If our class doesn't contain toString() method. Then Object toString() method will be executed.
+
+Example :
+-------------
+sysout(s1);   =====> super(s1.toString());
+
+--> In the Above program Object class toString() got executed. Which is implemented as follows.
+
+public String toString(){
+return getClass().getName()+"@"+"Integer.toHexaString(HashCode());
+}
+
+to provide our oen string representation we have to override toString() in our class.
+
+ex:
+------
+For example whenever we are trying to print students reference to print his name and rollnumber we have to Override
+toString() method as follows:
+
+@Override
+public String toString(){
+return "Student [name="+name+",rollnumber="+rollno+"]";
+}
+
+
+TypeCasting
+-----------------------------------------------
+In java TypeCasting is a process of converting a reference of one type to another type when dealing with inheritance.
+There are 2 types of Typecasting :
+1. Upcasting
+2. Downcasting
+
+1.Upcasting
+--------------------------
+--> Upcasting is casting from subclass to a superclass.
+--> It's Implicit an doesnot require an explicit cast operator.
+--> Upcasting is safe and always allowed because a subclass object we can always as treated as a superclass Object.
+
+2.Downcasting
+---------------------------
+--> Downcasting is casting from superclass to a subclass.
+--> It is a explicit and require an explicit operator.
+--> Downcasting is potentially unsafe because it involves converting a superclass reference to a subclass reference.
+    it can leans to a classCastException. if runtime object being cast is not actuallyObject of instance of the subclass.
+
+=========================================================================================================================
+                                                        07-06-25
+=========================================================================================================================
+
+
+Final Modifier with repsect to inheritance
+--------------------------------------------------------
+Final is a modifier applicable for variables, methods ,classes.
+
+--> if a class is declared as final we cant extend that class.
+--> If a method is
+
+
+
+Abstract Modifier :
+-----------------------------------
+=> Abstract is a modifier it can be applicable for classes and methods but not varibles.
+
+Abstract Methods :
+------------------------------------
+=> Even though we don't have implementation still we can declare a method with abstract modifier.
+=> That is abstract methods have only declaration but not implementation.
+=> hence abstract method should ends with semicolon(;).
+
+Abstract classes :
+------------------------------------
+=>
+
+
+
+What are the differences of abstract class and abstract methods?
+----------------------------------------------------------------------------------
+if a class contain at least one abstract method then compulsory the corresponding class signed should be declared with abstract
+modifier. Because implementation is not complete and hence we can't create Object of the class.
+
+even though class doesnt contain any abstract methods still we can declare the class as abstract as abstract class can contain
+zero or more number of abstract methods.
+
+Even tough we dont about implementation that method is declared as abstract method. Then child classes is respomsible to
+implement that method. The main advantage of abstract methods is declaring abstract method in parent class we can
+provide guidelines to the child class such that which methods they should compulsory implement.
+
+
+============================================================================================================================
+                                                        08-06-25
+============================================================================================================================
+Packages  (important and small topic)
+-----------------------------------------
+Package is a group of classes and interfaces and subpackages.
+Syntax:
+        package package_name;
+
+package_name format:
+
+            com.organisation_name.topic_name
+
+--> we need to take meaningfull names. If we working under an organisation we need to use like "com.organisatio_name.topic_name"
+
+Pre-defined classes
+---------------------------------------------
+in java we have several pre-defined packages for usage to the developers. Some of them are
+
+java.lang Package
+-----------------
+This is the basic package that we need not to import this package these have all basic functions and methods like
+String
+
+
+Date and time functions
+-------------------------
+Until 1.7 version the classes present in java.util package to handle to handle date and time(like Date,Calender,TimeZone)..
+etc not upto the marks w.r.t convienence and performance.
+
+--> It reduces the conflicts between the same class names.
+--> It increases modularity and enhancement.
+
+
+=======================================================================================================================
+                                                    10-06-25
+=======================================================================================================================
+User-Defined packages :
+--------------------------
+--> first we can manually create a folder and create an java file inside of it.
+--> Or we can create a folder using command prompt using mkdir keyword.
+
+
+=======================================================================================================================
+                                                    11-06-25
+=======================================================================================================================
+Import Statements :
+---------------------
+There are 2 ways to import pre-defined classes
+1. To use import keyword at the start of the program after the package statement and outside the class.
+2. Use fully qualified name(java.util.Scanner) when we are creating object inside the method.
+
+There are 2 types of import statements. They are
+1. implicit import statements
+2. explicit import statements
+
+1.implicit import statements :
+---------------------------------
+whenever we need to use the various classes inside a package we need not to import every class individually. We can insert
+* so it will import all the classes in the package.
+-->
+Syntax:
+    import java.util.*;
+
+
+Modifiers with respective packages
+-----------------------------------
+1.default
+-----------
+1. When no access modifier specified the class, method or field has default access.
+2. accessible only within the same package classes.
+3. Outside packages are not accessible.
+
+2. public
+-----------
+1. When a class or method or field declared as public it is accessible from anywhere,regardless package.Used to allow
+    maximum visibility and reuse.
+
+3.private
+---------------
+1. private members are only accessible only within in tje same class.
+2. Not accessbile from any class not even subclasses or classes to hide internal details and protected data.
+
+4.protected
+--------------
+1. protected members are accessible are within the same package just like default access.in subclasses even if there are in
+    different packages.
+
+
+==========================================================================================================================
+                                                    12-06-25
+==========================================================================================================================
+Interfaces :(It is a specification to a classes.)
+--------------
+--> A common meduim betwenn two things to interact with each other.
+--> User can interact with objects with the help of Interfaces.
+--> The interface is contract to the class.
+--> An interface is a set of specification to a group of classes.
+--> Interface is a blueprint for the class.
+-->
+Rules:
+------
+1. Every methods inside the interface must be an "public abstract method".Whether we are declared on not
+2. so hence 100% pure abstract classes also considered as the interface.
+3. Every variables inside the interaface must be public static final Varaible_name;
+
+Syntax:
+---------
+//File name: interface_name.java
+    interface interface_name{
+        public abstract methods(){
+            public static final variable_name;
+        }
+    }
+
+
+        extends vs implements
+------------------------------------------
+1. A class can extend only one class at a time.
+2. A class can implements any no of interfaces simultaneously
+3. A class can extend one class and implement any no.of interfaces simultaneously.
+4. An interface can extend any no.of interfaces at a time.
+
+marker Interface:
+--------------------
+--> If an Interface doesn't contain any methods and by implementing that interface if out objects will get some ability such type of interfaces
+    are called marker interface / tag interface / ability interface.
+
+    example:
+        serializable , clonable , random access.
+
+
+Adapter classes :
+---------------------
+--> Adapter class is a simple java class that implements an Interface only with empty implementation for every method.
+--> If we implement an interface directly each and every method compulsory we should implementation. Whether it is required or not.
+--> This approach increase length of the code and decreases readability.
+--> We can resolve this problem by using adapter classes.
+--> Instead of implementing an interface if we extend adapter classes we have to provide implementation only for required methods
+    but not for all the methods of that interface.
+--> This approach decreased length of the code and improves readability.
+
+
+===================================================================================================================================
+                                                        13-06-25
+===================================================================================================================================
+Differences between absract class, interface and concerete class :
+---------------------------------------------------------------------
+1.If we dont know anything about implementation just we have requirements specification then we should go for interface.
+2. If we are talking about implementation but not completely (partial implementation) then we should go for abstract class.
+3. If we are talking about the implementation completely then we should go for concrete classes.
+
+Differences between abstract classes and interface.(very important interview question)
+---------------------------------------------------------------------------------------
+Interfaces                                                                      Abstract classes
+1.
+2. Inside interface every method is always public and abstract         2. Every method presemt inside abstract class need not be public and
+    whether we are declaring or not .                                       abstract.
+3. Inside interface every variable is default public static final       3. Every abstract class variable need not be abstract public final.
+    whether we are decalring or not
+4. For the interface variables compulsory we should perform             4. It is not required to perform iitilization at the time of declaration
+    initilization at the time of declaration otherwise we would get
+    compiletime error.
+5. Inside interface we cannot take instance and static blocks.          5. Inside this class we can take both instance and static blocks
+6. Inside interface we can't take constructor.                          6. Inside abstract class we can take constructor.
+
+Question : We can't create object for abstract class but abstract class can contain constructor what is the need?
+--------------------------------------------------------------------------------------------------------------------
+Answer : Abstract class constructor will be executed whenever we are creating child class object to perform
+         initilization of child object.
+
+
+Multiple interface implementation : (don't call the multiple inheritance)
+---------------------------------------------------------------------------
+interface A{
+---------
+------
+}
+interface B{
+---------
+------
+}
+class Test implements A,B{
+
+}
+
+
+Note : If a Class contains private variables, getters and setters, constructor, toString method then that class is
+        called "Bean classes"(in java), "pojo classes(in Spring)" ,Data transfer Object(data Base).
+
+
+======================================================================================================================
+                                                        14-06-25
+======================================================================================================================
+Exception Handling :
+---------------------
+An unwanted and un expected event that disturbs normal flow of the program is called "exception".
+
+example :
+    tyrePunchered exception
+    sleeping exception
+    penNot exception
+    FileNotFoundException
+    NullPointerException
+
+What  is the meaning of the exception handling
+---------------------------------------------
+Exception Handling means doesn't repairing an exception. We have to define alternative way to continue rest of the program
+normally this way this of defining alternative is nothing but exception handling.
+
+Exception hierarchy:
+-----------------------
+
+
+
+
+                                                    Object class
+                                                        |
+                                                    Throwable
+                                                        |
+                                     Exception <--------|---------> Error
+
+
+Differences between Error and Exception(Very Important)
+-------------------------------------------------------------------
+Exception :  Most of the cases Exceptions are caused by our program hence they are Recoverable.
+
+ex: if FileNotException Occurs we can use LocalFile and we can continue rest of the program execution normally.
+
+Error:
+---------
+Most of the cases Errors are caused by our programs these are due to lack of system Resources and these are non Recoverable.
+
+Ex: if OutOfMemoryError occurs being a programmer we can't do anything the program will be terminated abnormally.
+
+System Admin or server admin is responsible to raise/increase the heap memory
+
+What are the differences between Checked Exception and Unchecked Exception?
+------------------------------------------------------------------------------
+The Exceptions which are checked by the Compiler for smooth execution of a program at runtime are called checked Exceptions.
+HallMissingException
+PenNotWorkingException
+FileNotFoundException
+
+The Exceptions which are not checked by the compiler are called Unchecked Exceptions.
+BombBlastException
+ArithmeticException
+NullPointerException
+
+Note:
+------
+Runtime Exception and it's child classes errors and its child classes are unchecked and remaining all are checked exception.
+
+Note:
+-------
+Whether exception is checked or unchecked compulsory it should be occur only if its child classes are also checked.
+
+Ex: IOException
+InterruptedException
+
+PartiallyChecked
+------------------
+if an exception is said to be pratially checked if and only if child classes are unchecked.
+
+
+Which of the following are checked Exception ?
+    a.RunTimeException------->unchecked Exception
+    b.Error------------------>unchecked Exception
+    c.IOException------------>fully checked
+    d.Exception-------------->Partially checked
+    e.InterruptedException--->Partially checked
+    e.Throwable-------------->partially checked
+    f.ArithmeticException---->unchecked
+    g.NullPointerException--->unchecked
+    h.FileNotFoundException-->fully checked
+    i.SqlException----------->fully checked
+
+Types of Exceptions :
+-----------------------------
+These are divided into 2 types. They are
+1.JVM Exceptions
+2.Programmatic Exceptions
+
+JVM Exceptions:
+-------------------
+The Exceptions are which are raised automatically by the JVM whenever a particular Event occurs.
+Ex:
+    ArrayIndexOutOFBounds
+    Arithmetic
+
+Programmatic Exceptions:
+-------------------------
+The Exceptions which are raised explicitly by the programmer or by the API Developer are called Programmatic Exceptions.
+
+
+Top 10 Exceptions (Need to write the description for this exceptions)
+-----------------------------------------------------------------------
+1.ArrayIndexOutOfBoundsException
+2.NullPointerException
+3.StackOverFlowError
+4.NoClassDefFoundError
+5.ClassCastError
+6.ExceptionInitializerError
+7.IllegalArgumentException
+8.NumberFormatException
+9.IllegalStateException
+10.AssertionError
+
+
+
+1,2,3,4,5,6------->are JVM Exceptions
+7,8,9,10----------> Programmatic Exceptions
+
+
+
+Exception Handling Keywords
+----------------------------------
+try
+catch
+finally
+throw
+throws
+
+without Try block Writing exception
+-------------------------------------
+
+Here is the explanation for each exception and error without examples:
+
+---
+
+1. ArrayIndexOutOfBoundsException
+
+This exception occurs when attempting to access an array element using an index that is either negative or greater than or equal to the size of the array.
+
+2. NullPointerException
+
+This exception is thrown when an application attempts to use an object reference that has not been initialized (i.e., it is null).
+
+3. StackOverflowError
+
+This error occurs when the application recurses too deeply and exceeds the call stack size, typically due to infinite or very deep recursion.
+
+4. NoClassDefFoundError
+
+This error occurs when a class that was available at compile time is not found at runtime, possibly due to classpath issues or missing dependencies.
+
+5. ClassCastException
+
+This exception is thrown when trying to cast an object to a subclass of which it is not an instance, resulting in an invalid type conversion.
+
+6. ExceptionInInitializerError
+
+This error occurs when an exception is thrown during the static initialization of a class or static block, preventing the class from being properly loaded.
+
+7. IllegalArgumentException
+
+This exception is thrown when a method receives an argument that is inappropriate or outside the expected range or format.
+
+8. NumberFormatException
+
+This exception occurs when trying to convert a string to a numeric type (like int or float), but the string does not have an appropriate format.
+
+9. IllegalStateException
+
+This exception is thrown when a method is invoked at an illegal or inappropriate time or when the object is not in the correct state for the requested operation.
+
+10. AssertionError
+
+This error is thrown when an assertion fails, indicating that a program's internal assumption has been violated, often used during testing and debugging.
+
+
+==============================================================================================================================
+16-06-25
+==============================================================================================================================
+Exception Handling Keywords
+-----------------------------
+try------> Take risky code
+catch----->Handling Code
+finally----->In out program whether exception is raised or not raised or exception is matched or not matched whatever the statements
+throw------->Sometimes we can create our own exception that exception to the JVM Manually, we can use throw statement.
+throws------->Sometimes in out programs if there is any chance of raising checked exception compulsory we should handle either by try catch
+               or by throws keyword otherwise the code son't compile.
+
+
+Note: We must write the exceptions in child class to parent class not in the parent to child class format
+        Example :
+        try{
+        ------------
+        }catch(ArithmeticException e){                //This is the correct flow of the exception classes.
+        }catch(Exception e){}
+
+
+
+what are the difference between final, finally and finalize?
+------------------------------------------------------------------
+1. Final is a modifier applicable for classes,methods and variables.
+---> if a method is declared as final we can't extend the class.
+---> if a method is declared as final we cannot override that method.
+---> if a variable is declared as final we cannot reassign that variable.
+
+2. Finally is a block associated dby the try and catch to maintain clean up code which should be executed always irrespective
+    of of whether the exception is raised or not raised mathced or not matched.
+
+3.Finalize() : It is a method should be called by garbage collector alwasy just before destroying an Object to perform clean up activities.
+
+
+exception handling keywords summary
+--------------------------------------
+try---> Handling risky code
+catch---> handling code
+finally---->ckean up code
+throw---->our own exceptions object handover to the JVM manually.
+throws----->to delegate out responsibility to the caller method.
+
+Control flow in nested try-catch
+----------------------------------
+try {
+            System.out.println("Statement 1");
+            System.out.println("Statement 2");
+            try{
+                System.out.println("Statement 6");
+                System.out.println("Statement 7");
+            } catch (Exception e) {
+                System.out.println("Statement 8");
+            }finally {
+                System.out.println("Statement 9");
+            }
+            System.out.println("Statement 3");
+        }catch (Exception e){
+            System.out.println("Statement 4");
+        }
+        finally{
+            System.out.println("Statement 5");
+        }
+
+Here ,if we have occurred exception in statement 2 then output is 1,4,5
+        if we have occurred exception in statement 6 then output is 1,2,8,9,3,5
+        if we have occurred exception in statement 3 then output is 1,2,4,5
+        if we have occurred exception in statement 7 then output is 1,2,6,8,9,3,5
+        if there is no error the control flow would be 1,2,6,7,9,3,5;
+
+
+Note :  1. If the Exception is occurred in either Finally or the catch block then the code will leads to abnormal termination.
+        2. If the Exception in the Catch block is not matched to the raised exception in the try block then it also leads to
+            abnormal termination. Final block will always execute normally.
+
+
+
+========================================================================================================================
+                                                        17-06-25
+========================================================================================================================
+Custom Exceptions:(Very important and easy topic)
+---------------------------------------------------
+Sometimes wed ca create out own exceptions, such type exceptions are called "Custom Exception".
+
+--> How many ways u can print exception info ?
+1.e.printStackTrace()
+    Execption name;
+
+
+========================================================================================================================
+                                                        20-06-2025
+========================================================================================================================
+MultiThreading :
+-------------------
+In Earlier days Uni-programming are there means memory is occupied one one program at a time and after completion of one
+program it is possible to executed another program.
+
+When one program executed is completed then only the second program execution will be started then this is very time consuming
+and memory wastage and low performance approach because these are based single process mechanism. In single process system
+is allow only one task at a time to load in memory and it follow sequential kind of execution where reduce performance.
+To Overcome the above problem we have multi-tasking system. In this multi tasking system more than one task is loaded into
+memory and more than one process is allow to exectute that task and follows parallel execution which improves performance.
+
+In multi-tasking system execution is controlled by CPU Scheduler.
+
+CPU Scheduler will allocates a particular time of period for each and every program/Task.
+
+Execution of several program/Task simultaneously is called MultiProgramming.
+
+There are two types of multitasking:
+---------------------------------------
+1.Process based multitasking
+2.Thread based multitasking
+
+1.Process Based MultiTasking
+------------------------------
+Executing several programs simultaneously where each task is a separate ijndependent process such type of multitasking
+is called process based multitasking
+
+Example:
+-----------
+While typing program in notepad we can able to listen music in background and at the same time we can download files from
+the internet all these tasks are independent of each other executing simultaneously and hence it is process based Multitasking.
+
+These type of multitasking is best suitable for OS Level.
+
+
+2.Thread based Multitasking
+--------------------------------
+Executing several tasks simultaneouly where each task is a separate independent part of the same program is
+called thread based multitasking.
+These type of multitasking is best suitable for programming level.
+
+Process
+-------
+Process is a heavy weighted and to handle it system need more memory and more time and siwtching between process is also
+time consuming which may consuming which may effect performance.
+
+Thread
+--------
+threrad is a light weighted process and it increases performance because to handle it,less memory and less execution time
+required.
+thread is othing but separate path or ligt processses of execution.
+these Threads are independent.
+
+thread is called light weight process because when ever we are creating a thread it is not occuping the separate memory
+it useds the same memory which is occupied by process means memory it shared between threads
+
+
+
+Ways to define a thread:
+-----------------------------
+There are 2 ways to define a thread.
+1. extending Thread class
+2. Implementing Runnable class.
+
+Thread Scheduler
+-----------------
+if multiple threads aer waiting to execute then which Thread will be executed 1st it decided by thread Scheduler. Which is the part JVM
+
+Which algorithm or behaviour is followed by Thread scheduler we cant expect exactly is it the JVM Vendor dependendent hence in
+multithreading examples we can't expect exact execution order and exact output.
+
+Diffences between t.start() and t.run() methods
+----------------------------------------------------
+in the case of t.start(0) method new Thread will be created which is responsible for the execution of run(0)method.
+but in the case of t.run(0) new thread will be created and run (0) method will be executed just like a normal method by the main method.
+
+After starting thread we are not allowed to restart the same Thread once again otherwise we will get RuntimeException saying IllegalThreadStateException.
+
+
+example:
+--------
+Abc a=new Abc();
+a.start();
+-----
+-----
+a.start()//R.E  IllegalThreadStateException
+
+2.Implementating Runnable interface
+-------------------------------------
+In this approach create a class an implements Runnable interface presents in Java.lang.Runnable interface.
+as you implements runnable interface now you can provide implementation of run() method so that we can execute some logic by creating thread.
+
+now you can implemented Runnable interface so your class become implementation of Thread class object and pass that implementation class
+refence to that thread. so that thread can start your user defined run() method.
+
+
+Best Approach to define Thread
+--------------------------------
+among 2 ways to defining a thread implements Runnable approach is always recommended.
+in the 1st approach out class should be always extends Thread class there is not vhance of extending any other class hence
+we are missing inheritance benefit.
+
+but in the 2nd approach while implementing Runnable Interface we can extend some other class also. hence implementing runnable mechanism
+is always recommended.
+
+
+=========================================================================================================================================
+                                                          21-06-25
+=========================================================================================================================================
+Getting and setting name of a Thread :
+-----------------------------------------
+--> Every thread in java has some name it may be provided explicitly by the programmer or automatically generated by JVM.
+--> Thread class defines the following methods to get and set name of a thread.
+
+1.public final String getName();
+2.public final void setName(String name);
+
+
+Trread Proirities :
+--------------------
+Every thread in java has some prorioty it may be default proirity Generated by JVM or explicitly provided by the programmer.
+-->The valid range of the thread priorities are 1 to 10. But not(0-10) where 1 is the Min Priority 10 is the Max Priority.
+--> Thread class defines following constants to represent some standard priorities
+
+1.Thread.MIN_PRIORITY -->1
+2.Thread.MAX_PRIORITY -->10
+3.Thread.NORM_PRIORITY-->5
+
+--> There are no constatns like Thread.LOW_PRIORITY and Thread.HIGH_PRIORITY
+--> thread Scheduler uses these priorities while allocating CPU.
+--> The Thread which is having highest priority will get the chance for 1st Execution.
+--> If two threads are having the same priority then we can't expect execution order it depends on thread sceduler whose behaviour is vendor dependent.
+
+--> We can get and set priority of a thread we can use following methods.
+
+public final int getPriority();
+public final void setPriority(Priroty number b/w 1 to 10 )
+the allowed values are 1 to 0 otherwise we will get RuntimeException saying "IllegalArgumentException" ;
+
+
+The Methods to prevent(stop) a thread Execution
+----------------------------------------------------
+We can stop a Thread execution by using the following methods.
+
+1.yield();
+==============
+--> This method causes " to pause current executing Thread for giving the chance of remaining waiting Threads of the same Priority."
+--> If all threads have the low priority or if there is no waiting threads then the same thread will be conitnued it exection.
+--> If several waiting threads have the low priority avaliable we can't expect which thread will get chance for execution.
+--> The Thread ehich is yielded when it get the chance once again for execution depends on thread scheduler.
+
+2.join();
+==============
+--> If a thread wants to wait until completely another Thread we should go for join() method.
+
+public final void join() throws InterruptedException
+
+3.sleep() -->is easy
+=====================
+--> If a thread don't want to perform any activity we use sleep method
+
+Differences between Yield()  join()  sleep() :
+-----------------------------------------------------
+Property                             Yield()                                  Join()                              Sleep()
+
+1.Purpose                       To pause current executing          If a Thread wants to wait until     if a thread don't want to perform
+                                Thread for giving the chance        until completing some other Thread  any operation for a particular
+                                of remaining wating Threads         then we should go for join.         amount of time then we should
+                                of same priority                                                        go for sleep() method.
+
+
+2.is it static ?                      Yes                                      No                                        Yes
+
+3.is it final ?                        No                                      yes                                       No
+
+4.is it Overload ?                     No                                      Yes                                       Yes
+
+5.is it throws
+InterruptedException ?                 No                                      Yes                                       Yes
+
+6.is it native method ?               Yes                                       No                              sleep(long ms)==>native
+                                                                                                        sleep(long ms,int ns)==>non-native
+
+===================================================================================================================================
+                                                                23-06-25
+===================================================================================================================================
+Synchronization (Very Important for interview)
+---------------------------------------------------
+--> If a method is assigned as synchronized then only one thread can run at a time.
+--> Disadvantage :
+        It has high waiting time occured when a thread is running but another request from another thread then that thread will be in
+        waiting state.
+
+Step 1:
+--> Synchronization is a keyword applicable for blocks and methods not for variables or classes.
+--> If a method or block is declared as synchronized at a time only one thread is execute that method on the given Object.
+--> the main advvantage of Synchronization is we can resolve data inconsistency problems.
+--> The main disadvantage of synchronized keyword is waiting time of a threads. It effects performace of the system.
+--> Hence if there is no specific requirement then never recommended to synchronized keyword.
+-->Internally synchronization concept is imolemented in to lock concept.
+-> If a thread wants to execute any synchromized method on the given object 1st it has to get the lock of that Object.
+    once a thread got lock on the object then it is allow to execute any synchronized method execution completes then Automatically
+    Thread releases the completes tjen Automatically thread releseas the lock.
+--> While a thread executing any synchronized method is remaining Threads not allow to execute any synchronized method on the that object
+    Simultaneously but the remaining threads are allowed to execute non-synchronized method simultaneously.[lock concept implemented based on
+    Object but not based on methods.]
+
+Synchronized Block  :
+------------------------
+Same concept only but difference is synchronized is applicable at block.
+--> if the application contain 100 lines of code but if you want to synchronized only 10 lines o code then instead of synchronized
+whole method you can simply use synchronized block.
+--> Synchronized scope is less compared to methods.
+synchronized(Object){
+
+}
+
+Daemon Thread :
+---------------
+--> The thread which are executing in the background such type of methods are called "Daemon Threads".
+--> The main purpose of the daemon threads is to provide support for non daemon threads.
+Example :
+    Garbage Collector.
+
+DeadLock
+----------
+
+
+
+
+
+
+InterThread communication
+-------------------------------
+--> The process of communcation between more than on e is called as "Interthread communcation".
+--> for Thread Inter comuncation we have following methods.
+    wait(), notify(), notifyAll().
+--> When any thread is in watiting state then notify() method can be used to give a notification to thread which is avaliable
+    in waiting state.
+--> 
+
+=========================================================================================================================
+                                                            24-06-25
+=========================================================================================================================
+Collection Framework :
+-------------------------
+If u want to represent a group of individual objects represented as a single unit is known as java collection.
+
+Differences between arrays and collections : (Very important)
+---------------------------------------------------------------
+9 key interfaces :
+-------------------
+1.collection
+2.list
+3.set
+4.SortedSet
+5.NavigableSet
+6.Queue
+7.Map
+8.SortedMap
+9.NavigableMap
+
+Wrapper Classes :
+----------------------
+Converting primitive classes in Objects is called Wrapper classes.
+
+Primitive data type                         Wrapper class
+byte                                            Byte
+short                                           Short
+int                                             Integer
+long                                            Long
+float                                           Float
+double                                          Double
+boolean                                         Boolean
+char                                            Character
+
+AutoBoxing and AutoUnboxing
+=============================
+Autoboxing :
+-------------
+Converting primitive to wrapper classes is called autoBoxing.
+Ex:
+    int x=10;
+    Integer a=x;
+
+AutoUnboxing :
+--------------
+converting wrapper class objects to primitive type is called autoUnboxing.
+
+
+difference between collections and collection :
+-------------------------------------------------
+collection (I) : collection is an interface which ccan be used to represent a group of objects in single entity.
+collections(C) : collection is an utility class present in java.util package to define several utility methods for
+                 collection objects.
+
+List(I) :
+-----------
+--> List is the child interface of collection.
+--> List is an index based all the elements inserted into an index.
+--> List allow duplicates.
+--> List allow heterogeniuos elements.
+-->List allow allow
+
+
+Synchronized :
+----------------
+1.It allows only one thread at a time.
+2.It allows sequrnetiak execution.
+3.It increases applicaiton execution time
+4.It reduces application performance.
+5.It is Thread safe.
+6.It gives guarentee for data consistency.
+
+not a synchronized :
+-------------------
+1.It allows more than one Thread at a time.
+2.It allows parallel execution Over Threads.
+3. It reduces application execution time.
+4. It increase application performance.
+5.It is not a thread safe.
+6. Doesn't give guarentee for data consistency
+
+Generics :
+------------
+
+==========================================================================================================================
+                                                        26-06-25
+==========================================================================================================================
+Queue() :
+---------
+1.It is introduces in JDK 1.5 version.
+2.It is the direct child interface to collect interface.
+3.It is not index based.
+4.It is able to allow duplicate elements.
+5.It is able to follow FIFO.
+6.It is able to manage all elements as per prior to processing.
+7.It is able to follow natural sorting order.
+8.It is able to allow only homogenious elements.
+9.it doesn't allow null elements.
+10.It allows only comparable elements.if ew want to add non comparable elements we must use java.util.comparator.
+
+offer(Object);
+peek();
+element();
+remove();
+poll();
+
+
+PriorityQueue p=new PriorityQueue();
+PriorityQueue p=new PriorityQueue(new MyComparator());
+
+
+=========================================================================================================================
+                                                        27-06-25
+=========================================================================================================================
+
+Map interface :
+-----------------
+--> It stores the key value pairs.
+--> It is not a child interface to collection.
+--> It is able to manage all the objects in the form of key-value pairs where both keys and values are objects.
+--> In maps keys must be unique but values can be duplicated.
+--> In maps keys are able to allow only null element but values may allow more than one null element.
+--> In maps keys and values are able to allow heterogeneous elements.
+--> Maps are able to follow keys insertion order.
+
+Hashtable : (Used mostly for legacy code )
+-------------------------------------------
+--> The Hashtable dataStructure is HashTable.
+--> Insertion order is not preserved and it is based in some hashcode() of the keys.
+--> Heterogeneous objects are allowed both keys and values.
+--> Null key or Null values are not allowed if we adding we will get NullPointerException.
+--> Every method present inside HashTable is Synchronized and hence HashTable Object is Thread Safe.
+
+=========================================================================================================================
+                                                        28-06-25
+=========================================================================================================================
+Java 1.8 features:
+---------------------
+Java 7 - July 28th 2011
+Java 8 - March 18th 2014
+Java 9 - September 22nd 2016
+Java 10 - 2018.
+....etc
+
+Before java 8, Sun microsystems people gave importance only for objects but 1.8 java version oracle people gave information for
+functional aspects of the programming to bring its benefits to java. It doesn't mean java is functional oriented programming
+language.
+
+Lambda Expressions
+-------------------
+--> A method without name and without modifier and without return type anonymous(nameless) is called lambda expression.
+--> The symbol "->" is the lambda symbol.
+
+public void display(){
+sout("Hello");                                  //Normal type of code
+}
+
+()->sout("Hello");                              //Lambda type of code of the above module
+
+==> (int a)->sout(a);
+==> (a)-> sout(a);
+==> a->sout(a);
+
+public void sum(int a,b){                       ==>(a,b)-> sout(a+b);
+sout(a+b);
+}
+
+String display(String s){                       ==>s->return s;
+return s;                                       ==>s->s;
+}
+
+--> Lisp is the other progrmmaing language which uses lambda expressions.
+--> the other languages which is lambda expressions are c#, python,.net,ruby,etc and finally in java also.
+--> The main objective of lambda expression is to bring benefits of funnctional programming into java.
+
+What is lambda expression ?
+------------------------------------
+Lambda expression is a anonyms function nameless function. That means the functions which doesnt have the name, return type
+acess modifier.
+
+Lambda expression is also known as anonyms function or clauses.
+
+Conclusions
+------------
+1. A lambda expression can have a zero or more number of parameters(Arguments).
+2. Usually we can spotify type of a parameter. If the compiler expects the type based on the context then new can remove
+the type also.
+3. If multiple parameters present then these parameters are separated by comma(,).
+4. If zero number of parameters avaliable then we have use empty parameter like[()].
+5.If only one parameter is avvalible and if the compiler can expect the type then we can remove the type paranthesis also.
+6.Similar to method body lambda expression body also can contain multiple statement. If more than one statement is present
+then we have to enclosed with curly brases.If one statement is present curly braces are optional.
+7. Once we write lambda expression we can call it just like a normal method. for this functional interfaces is required.
+
+
+functional interfaces :
+-----------------------------
+--> If an interface contains SAM(single abstract Method) is called funtional interfaces.
+
+Example :
+-----------
+1.Runnable interface is a functional interface.   -->run()
+2.Comparable interface is a functional interface.-->compareTo()
+
+@FunctionalInterface
+Example :
+--------------
+interface interf{
+m1();
+}
+
+
+Interface with respect to Functional interface :
+------------------------------------------------------
+@FunctionalInteface
+interface A{
+public abstract void methodOne();
+}
+interface B extends A{
+}
+
+Lambda expression vs Functional Interface
+-------------------------------------------------
+
+
+Inner Classes :
+---------------
+Inner class we can declare another class is called inner class.
+
+class Outer{
+    class inner{
+
+    }
+}
+
+without existing the outerclass object there is no chance of existing inner class objects such type of classes are inner classes.
+
+
+anonymous inner classes :
+--------------------------
+sometimes we can declare a inner class without a  name such type of classes is called anonymous inner classes.
+
+The main Objective inner classes of anonymous inner classes are "Just for instance use";
+There are 3 types of ananoymous inner class.
+1. Anonymous inner class that extends a class.
+2. Anonymous inner class that implements an interface.
+3. Anonymous inner class that defined inside method arguments.
+
+===========================================================================================================================
+                                                        30-06-25
+===========================================================================================================================
+
+Predicate
+---------
+Predicate is a function with a single argument and return Boolean value to implement predicate functions in java Oracle
+people introduced predicate interface in java 1.8 version.
+Predicate interface present in java.util.function package.It is a functional interface and it contains only one method test();
+
+Write a predicate to check whether the given integer is greater than 10 or not?
+--------------------------------------------------------------------------------
+
+Function
+-----------
+Function are exactly same as predicate expect that functions can return any type of result.
+
+Consumer :
+-----------
+Functions that doesnt return any value.It contains only one method that is accept .
+
+supplier :
+--------------
+Just it supply my required objects and it won't take any input and we go for supplier object.
+
+Optional Classes :
+---------------
+Optional classes is a container objects is used to represent the presence or absence to represent of a value. It helps to avoid null pointer Exception.
+
+=================================================================================================================================
+                                                            01-07-25
+=================================================================================================================================
+Assertions :
+--------------
+The most common way of debugging is uses of Sop's. But the main disadvantage of sops is after fixing the bug compulsory we
+should delete extra added sops. Otherwise these sops also will be executed at runtime which impacts performance of the system.
+and disturbs logging mechanism.
+--> To Overcome this problem sun people introduced in assertions in java 1.4.
+--> The main objective of assertions over soaps is based our requirement we can enable or disable assertions and by default
+assertions are disable hence after fixing bug it is not required to delete assert statements explicitly.
+-->Hence the main objective of assertions is to perform debugging.
+--> Usually we can perform debugging either in develeopment environment or test environment but not production environment. Hence
+    assertions concept is applicable for developing and testing environment but not the production.
+
+Types of assert Statements :
+---------------------------------
+1.Simple Version :
+-------------------
+syntax :
+
+
+
+Streams :
+-----------
+The process objects of the collection.
+
+What are the differences between java.util.streams and java.io.streams
+----------------------------------------------------------------------------
+Java.util.Strems meant for processing objects from the collection.It represents a stream of objects from the collection.
+
+But in java.io.streams meant for processing binary and character data with respect to file. It represents a stream object from the
+collection then we should go for streams.
+
+Hence java.io.stremas and java.util.stramss both are different.
+
+What are the differencees between collection and stream ?
+------------------------------------------------------------
+If we want to represent a group of individuals objects as a single entity then we shiuld go for collection.
+If we want to process a
+
+we can create a stream
+
+
+
+
+
+
+
+We can process the objects in the following 2 ways :
+--------------------------------------------------------
+1.Configuration
+2.processing
+
+Configuration
+------------------
+we can configuration by using filter and mapping mechanism.
+There are 2 types :
+    1.Filter
+    2.Mapping
+
+--> Filtering :
+-------------------
+we can configure a filter to filter elements from the collections based on some boolean conditions by using filter method.
+
+--> Mapping :
+-------------
+If we want to create a separate new object for every object present in collection based on our requirement then we should
+go for map() method of stream interface.
+
+
+========================================================================================================================
+                                                       02-07-2025
+========================================================================================================================
+2.Processing :
+-----------------
+1.Processing by collect method
+2.Processing by count method
+3.Processing by sort method
+4.Processing by min,max method
+5.Foreach method
+6.ToArray() method
+7.Stream.of() method
+
+Java.IoStreams
+---------------------
+write
+------
+FileOutputStream
+BufferedInputStream
+
+Read
+-------
+FileInputStream
+BufferedInputStream
+
+
+FileOutputStream  :
+-----------------------
+purpose : Write raw bytes to a file.
+usage : best for writing binary data (eg: imahges,pdfs) or when manually converting test to bytes.
+
+Common Methods :
+-------------------
+write(int b) //Write one byte.
+write(byte[] b) //Write an array of bytes
+
+BufferedOutputStream :
+--------------------
+purpose : writes byte to a file with buffering to improve performance.
+wrapped : used on top of fileOutputStream.
+buffered : store data in memory first and writes in in chunks, reducing disk I/O.
+Uses when : Writing large amounts of data or writing frequently in loops.
+
+
+========================================================================================================================
+                                                      03-07-25
+========================================================================================================================
+File:
+--------
+1.File
+2.FileWriter
+3.FileReader
+4.BufferedReader
+5.BufferedWriter
+6.PrintWriter (Recommended)
+
+Serialization and De-Serialization
+---------------------------------------
+Serialization :
+----------------
+1. The process of saving or writing state of an object to a file is called serailization.
+2. But Strictly speaking it is the process of converting an object from java supported form to either network supported form
+    or file supported form.
+3. By using fileOutputStream and ObjectOutputStream we can achieve serialization.
+ex:
+    Big Balloon
+
+Steps to Perform serialization :
+------------------------------
+1.Prepare Seralizable Object.
+    In general al java objects are not to serializable, only the objects which are implementing java.io.Serializable.
+    Marker interface are eligible for serialization.
+Ex : class Employee implements Serializable{
+}
+    Employee emp=new Employee();
+
+2. Make Read Target file by using FileOuputStream.
+
+    FileOutputStream fos=new FileOutputStream("File.ser");
+3.Create ObjectOutputStream with FileOutputStream
+    ObjectOutputStream oos=new ObjectOutputStream(fos);
+4.Write Serialization object to ObjectOutputStream by using writeObject() method.
+    oos.writeObject(emp1);
+
+De-Serilization
+-----------------
+1. The process of reading state of an object from a file is called De-Serailization.
+2. But Strictly speaking it is the process of converting an Object from file Supported form or network supported from
+    to java supported form.
+3.By using FileInputStream and ObjectInputStream we can achive De-Serailization
+
+Steps to perform Deserialization :
+-----------------------------------
+1.Create FileInputStream for getting Deserialized object data from the flat file.
+    FileInputStream fis=new FileInputStream("File.ser");
+2.Create ObjectOutputStream with FileInputStream;
+    ObjectInputStream ois=new ObjectInoutStream(fis);
+3.Read De-Serialized object from ObjectInputStream.
+    Employee emp=(Employee)ios.readObject();
+
+========================================================================================================================
+                                                        05-07-25
+========================================================================================================================
+Transcent with respect with serialization :
+--------------------------------------------------
+--> Transient is a modifier applicable for variables but nor for mthods and classes.
+--> While serialzation if we dont to serailize the value of a particular varibale to meet the security contrstraint
+    then we should declare that variable with transient modifier.
+--> During the Serailization JVM ignores the original value of the trasient variable and save the default value.hence
+    transinet means not to serialize.
+
+Socket Programming :
+------------------------
+--> Socket is an end point for sending and receiving data across a computer network.It is a fundamental programming
+    and used to enable communication between two machines often a client and server.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

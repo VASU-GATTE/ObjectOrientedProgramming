@@ -1,0 +1,22 @@
+Writing a data using fileInputStream.
+Hello Worldpackage IOStreams;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class FileOutputStreamExample {
+    public static void main(String[] args){
+        String filepath="jfs28fos.txt";
+        String content="Writing a data using fileInputStream.\n"+"Hello World";
+        try(FileOutputStream fos=new FileOutputStream(filepath)) {
+            byte[] data=content.getBytes();
+            fos.write(data);
+            System.out.println("File created Successfully...");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
