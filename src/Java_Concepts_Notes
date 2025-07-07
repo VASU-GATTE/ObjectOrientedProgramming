@@ -1429,22 +1429,83 @@ Socket Programming :
 --> Socket is an end point for sending and receiving data across a computer network.It is a fundamental programming
     and used to enable communication between two machines often a client and server.
 
+TCP Protocol / UDP protocol :
+--------------------------------
+--> TCP is a connection protocol. sender first sends a request signal after that reciever accpets then the sender will
+    send the data.
+--> Sender sends another signal after previous signal sended completely.
 
+--> UDP sends the data contniously whether the reciever recieves or not.It is not guarenteed that the sender data is
+    read by the reciever or not.
 
+TCP:
+-----
+1.Server :
+----------
+1.Create a serverSocket Object.
+    serverSocket serSoc=new ServerSocker(1234);
+2.put the Server into Waiting State.
+    Socket link=new serSoc.accept();
+3.setup input and output
+    Scanner inout =new Scanner(link.getInputStream());
+    PrintWriter output=new PrintWriter(link.getOutputStream(),true);
+4.send and receive data.
+    Output.println("Type the content..");
+    String msg=input.nextLine();
+5.Close the connection after completion of the dialog.
+    link.close();
 
+Client :
+-------------
+1.Establish a connection to server with an appropriate ip and port number.
+    Socket link=new Socket(InetAddress.getByName("LocalHost"),1234);
+2.setup input and otput streams.
+    getInputStream(),getOutputStream();
+3.send and recieve the data.
+    Scanner object of client msg sent by printwriter of server, and printwrite of the client sends the message that are
+    recieved by the scanner object at the server.
+4.Close the connection.
 
+========================================================================================================================
+                                                            07-07-25
+========================================================================================================================
+UDP Server :
+-----------------
+1.Create a DataGramSocket object.
+    DatagramSocket ds=new DataGramSocket(1234);
+2.Create a buffer for incoming datagrams.
+    byte[] buff=new byte[256];
+3.Create a datagram objct for incoming messages.
+    DatagramSocket packet=new DatagramPacket(buff,buff.length);
+4.Accept incoming datagrams.
+    ds.accept(inpacket);
+5. Accept the senders address and port from the packet.
+    int cliport=inpackt.getPort();
+6.Retrieve the data from the buffer.
+    String msg=new String(inpacket.getData(),0,inpacket.getLength());
+7.Create a  response datagram.
+    DatagramPacket outpacket=nulll;
+    DatagramPacket(res.getBytes(),res.getLength(cliarr,cliport);
+8.Send the response Datagram.
+    ds.send(outpacket);
+9.Close the Datagram.
+    ds.close();
 
-
-
-
-
-
-
-
-
-
-
-
+UDP CLient :
+------------
+1.Create DatagramSocket Object;
+    DatagramSocket ds=new DatagramSocket();
+2.Create outgoing datagram
+    DatagramPAcket outpacket=newDatagramPacket(message.getBytes(,messages.length,host,1234);
+3.send the datagram message
+    byte[] buff=new Byte[256];
+4.Create DataGramPacket object for incoming datagrams;
+    DataGramPaket inpack=new DatagramPacket(buff,buff.length);
+5.Create DataGramPAcket object for incoming datagrams.
+    DatagramPacket inpack=new DatagramPacket(buff,buff.length);
+6.Accept an incoming datagram.
+    ds.recieve(inpack);
+7.Retrieve the data from outer.
 
 
 
